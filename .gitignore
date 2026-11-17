@@ -1,0 +1,23 @@
+
+# Ambiente virtual
+.venv/
+
+# Arquivos temporarios do Python
+__pycache__/
+*.pyc
+
+# Banco de dados local
+data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Arquivos privados
+.env
+.env.*
+
+# Arquivos do PyInstaller
+build/
+dist/
+*.spec
