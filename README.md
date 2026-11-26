@@ -1,130 +1,313 @@
+
 # PC Doctor AI
 
-**Desenvolvedor:** Daniel Muniz Da Silva  
+**Projeto desenvolvido no contexto do INOVIA**
+
+**Integrantes:**
+- Daniel Muniz da Silva
+- Victor Augusto Rocha Lino
+
 **Instituição:** Instituto Federal de Mato Grosso do Sul (IFMS)  
 **Curso:** Técnico em Informática Integrado ao Ensino Médio  
-**Semestre:** 6º semestre  
-**Projeto:** INOVIA
+**Turma:** 1212A  
+**Semestre:** 6º semestre
 
-## 1. Sobre o PC Doctor AI
+## 1. Sobre o projeto
 
-O **PC Doctor AI** é um aplicativo para Windows desenvolvido em Python para ajudar o usuário a acompanhar o desempenho do computador. Ele mostra o uso do processador, da memória RAM e do armazenamento, identifica situações que merecem atenção e apresenta explicações em linguagem simples.
+O PC Doctor AI é um programa para Windows desenvolvido em Python, que utiliza inteligência artificial local para auxiliar na identificação de possíveis problemas de desempenho do computador.
 
-O projeto utiliza **regras programadas em Python** para identificar alertas e, quando necessário, o **Ollama com o modelo Llama 3.2 3B** para gerar explicações com inteligência artificial executada localmente.
+O sistema coleta informações sobre o uso do processador, memória RAM e armazenamento, identifica indicadores que merecem atenção e apresenta explicações simples ao usuário.
 
-O PC Doctor AI faz parte do INOVIA, projeto voltado ao estudo e à aplicação prática da inteligência artificial.
+A proposta é facilitar a compreensão do funcionamento do computador, principalmente para pessoas que não possuem conhecimentos avançados em informática.
 
-## 2. Funcionalidades
+O programa utiliza o Ollama para executar um modelo de inteligência artificial diretamente no computador, sem depender de serviços externos para gerar os diagnósticos.
 
-Na interface, o usuário encontra:
+O PC Doctor AI faz parte das atividades desenvolvidas no projeto INOVIA, voltado ao estudo e à aplicação prática da inteligência artificial.
 
-- **Monitoramento:** exibe CPU, memória RAM, porcentagem de armazenamento ocupado e espaço livre, com atualização periódica.
-- **Verificar computador:** atualiza os indicadores e salva uma nova medição.
-- **Gerar diagnóstico:** analisa os dados. Sem alertas, mostra uma explicação baseada nas regras do programa; com alertas, consulta a IA local para explicar a situação.
-- **Ver histórico:** apresenta as últimas cinco medições registradas no banco SQLite.
+## 2. Objetivo
 
-O repositório também contém scripts utilizados no desenvolvimento e nos testes, incluindo monitoramento de processos, análise de medições anteriores e simulação de alertas. Essas funções auxiliares não são todas exibidas como botões na interface principal.
+Desenvolver uma aplicação simples de monitoramento e diagnóstico computacional, integrando Python e inteligência artificial local para interpretar informações do Windows e apresentar recomendações compreensíveis ao usuário.
 
-O programa **não faz reparos automáticos, não altera configurações do Windows e não funciona como antivírus**.
+O projeto também busca demonstrar que é possível utilizar modelos de linguagem em computadores pessoais, inclusive sem placa de vídeo dedicada, dependendo dos recursos disponíveis.
 
-## 3. Tecnologias utilizadas
+Além do desenvolvimento do programa, o trabalho envolve testes, documentação e orientações para que outras pessoas consigam instalar e utilizar a ferramenta.
 
-| Tecnologia | Utilização |
+## 3. Funcionalidades
+
+O PC Doctor AI possui as seguintes funcionalidades:
+
+- Monitoramento do uso de CPU, memória RAM e armazenamento.
+- Atualização automática das informações exibidas.
+- Consulta aos processos ativos por meio dos módulos de monitoramento.
+- Identificação de possíveis problemas por regras programadas.
+- Análise de medições anteriores para identificar utilização elevada repetida.
+- Diagnósticos com auxílio de inteligência artificial local.
+- Explicações em linguagem simples para usuários sem conhecimento técnico.
+- Interface gráfica desenvolvida em Python.
+- Armazenamento do histórico de medições utilizando SQLite.
+- Consulta das últimas medições realizadas.
+
+As medições são atualizadas automaticamente na interface. O armazenamento de uma nova medição no histórico ocorre quando o usuário utiliza o botão de verificação.
+
+O sistema não realiza correções automáticas nem altera configurações do Windows.
+
+## 4. Tecnologias utilizadas
+
+| Tecnologia | Finalidade |
 |---|---|
-| Python 3.14 | Desenvolvimento e testes |
-| psutil | Coleta de indicadores do computador |
-| CustomTkinter | Interface gráfica |
-| SQLite | Histórico local de medições |
-| requests | Comunicação com a API local do Ollama |
-| Ollama | Execução do modelo de IA no computador |
-| Llama 3.2 3B | Geração de explicações dos alertas |
+| Python 3.14 | Desenvolvimento do programa |
+| Ollama | Execução da inteligência artificial local |
+| Llama 3.2 3B | Geração de explicações dos diagnósticos |
+| psutil | Coleta de informações do computador |
+| CustomTkinter | Desenvolvimento da interface gráfica |
+| SQLite | Armazenamento das medições |
+| Requests | Comunicação entre Python e Ollama |
 | PyInstaller | Criação do executável para Windows |
+| Git e GitHub | Versionamento e distribuição do projeto |
 
-## 4. Como instalar e executar
+## 5. Como instalar e executar
 
-O programa foi desenvolvido e testado no **Windows 11**. A execução em outros computadores pode variar conforme o hardware e as configurações do sistema.
+O PC Doctor AI pode ser utilizado pelo arquivo executável para Windows ou diretamente pelo código Python.
 
-### Opção A — Executar pelo arquivo `.exe`
+### Opção 1 — Executar pelo arquivo .exe
 
-O executável Windows foi gerado e testado no computador de desenvolvimento. **Quando a primeira versão for publicada**, ela estará disponível na seção **Releases** deste repositório.
+Esta é a opção mais simples para quem deseja apenas utilizar o programa.
 
-1. Instale o Ollama para Windows: https://ollama.com/download/windows
-2. Abra o PowerShell e baixe o modelo utilizado pelo programa:
+**1. Instalar o Ollama**
 
-   ```powershell
-   ollama pull llama3.2:3b
-   ```
+Acesse:
 
-3. Confira a instalação com `ollama list`. O modelo `llama3.2:3b` deve aparecer na lista.
-4. Quando estiver disponível, baixe o arquivo ZIP na seção **Releases** e extraia seu conteúdo.
-5. Abra a pasta extraída e execute `PCDoctorAI.exe`, mantendo a pasta `_internal` junto do executável.
-6. Mantenha o Ollama disponível para utilizar os diagnósticos com IA.
+https://ollama.com/download/windows
 
-A versão `.exe` **não exige instalar o Python separadamente**, mas a geração de explicações por IA exige o Ollama e o modelo indicados acima.
+Baixe e instale o Ollama para Windows.
 
-**Observação:** o executável não possui assinatura digital profissional e pode apresentar avisos de segurança em determinados computadores. Ele foi testado no computador de desenvolvimento, mas ainda não foi validado em diferentes máquinas.
+**2. Baixar o modelo de inteligência artificial**
 
-### Opção B — Executar pelo código Python
+Após instalar o Ollama, abra o PowerShell ou o Terminal do Windows e execute:
 
-1. Instale o Python (a versão utilizada no desenvolvimento foi a 3.14): https://www.python.org/downloads/
-2. Instale o Ollama e baixe o modelo conforme os passos anteriores.
-3. Baixe ou clone este repositório e abra um terminal na pasta do projeto.
-4. Crie um ambiente virtual:
+```powershell
+ollama pull llama3.2:3b
+```
 
-   ```powershell
-   python -m venv .venv
-   ```
+Esse comando baixa o modelo utilizado pelo PC Doctor AI.
 
-5. Instale as dependências:
+Para conferir se o modelo foi instalado corretamente, execute:
 
-   ```powershell
-   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-   ```
+```powershell
+ollama list
+```
 
-6. Execute a interface:
+O modelo `llama3.2:3b` deverá aparecer na lista.
 
-   ```powershell
-   .\.venv\Scripts\python.exe interface_pcdoctor.py
-   ```
+**3. Baixar o PC Doctor AI**
 
-## 5. Como utilizar
+Acesse a página de download da versão 0.1.0:
 
-Na tela principal, acompanhe os indicadores de CPU, RAM, armazenamento ocupado e espaço livre.
+https://github.com/Roushinooll/PCDoctorAI/releases/tag/v0.1.0
 
-- Clique em **Verificar computador** para atualizar os valores e registrar uma medição.
-- Clique em **Gerar diagnóstico** para receber uma explicação dos indicadores. A IA local é consultada quando as regras identificam alertas.
-- Clique em **Ver histórico** para visualizar as cinco medições mais recentes.
+Na seção de arquivos da Release, baixe:
 
-O histórico fica armazenado **no próprio computador**. Durante a execução em Python, o banco é criado em `data/pcdoctor.db`. Na versão empacotada, é utilizado o diretório `%LOCALAPPDATA%\PCDoctorAI\pcdoctor.db`.
+`PCDoctorAI-Windows-v0.1.0.zip`
 
-## 6. Funcionamento sem internet
+**4. Extrair o programa**
 
-A internet é necessária para baixar e instalar inicialmente o Ollama e o modelo. Após essa preparação, o diagnóstico com IA pode funcionar **sem conexão com a internet**, desde que o Ollama esteja em execução e o modelo esteja disponível localmente.
+Extraia o conteúdo do arquivo ZIP.
 
-Esse funcionamento foi verificado em um teste com alerta simulado de memória RAM elevada.
+É importante manter o arquivo `PCDoctorAI.exe` junto da pasta `_internal`, pois ela contém componentes necessários para o funcionamento do programa.
 
-## 7. Testes realizados
+**5. Executar o aplicativo**
 
-Os resultados abaixo são **observações no computador de desenvolvimento**, não requisitos mínimos nem valores máximos de consumo:
+Abra a pasta extraída e execute:
 
-| Teste | Resultado observado |
-|---|---|
-| CPU do `PCDoctorAI.exe`, após cerca de 30 segundos | 3,2% |
-| Memória do `PCDoctorAI.exe` | 37,1 MB |
-| Memória do processo `llama-server` em uma captura | aproximadamente 2.447 MB |
-| Tempo de uma resposta da IA a um alerta simulado | 10,10 segundos |
-| Geração de explicação local sem internet | Funcionou no teste |
-| Abertura e diagnóstico básico no `.exe` | Funcionaram no computador de desenvolvimento |
+`PCDoctorAI.exe`
 
-O computador de desenvolvimento utiliza **Windows 11 e processador AMD Ryzen 5 4600G**. O consumo e o tempo de resposta podem variar em outros equipamentos. A resposta por IA dentro do executável ainda não foi validada com um alerta real.
+A interface gráfica do PC Doctor AI será aberta.
 
-## 8. Limitações
+Não é necessário instalar separadamente o Python para executar essa versão. Entretanto, o Ollama e o modelo Llama 3.2 3B precisam estar disponíveis para a geração de diagnósticos com inteligência artificial.
 
-O PC Doctor AI monitora indicadores básicos de desempenho, mas não identifica todas as possíveis causas de lentidão, não faz manutenção automática e não substitui um profissional especializado. As explicações produzidas pela inteligência artificial podem apresentar erros e devem ser consideradas **orientações informativas**.
+O executável não possui assinatura digital profissional e pode apresentar avisos de segurança em determinados computadores.
 
-O programa não substitui ferramentas de segurança ou antivírus. A versão executável ainda não passou por testes de distribuição em diferentes computadores.
+### Opção 2 — Executar pelo Python
 
-## 9. Autor
+Esta opção é indicada para quem deseja estudar o código, realizar testes ou contribuir com o desenvolvimento.
 
-**Daniel Muniz Da Silva**  
-Estudante do curso Técnico em Informática Integrado ao Ensino Médio do Instituto Federal de Mato Grosso do Sul (IFMS).
+**1. Instalar o Python**
+
+Baixe o Python 3.14:
+
+https://www.python.org/downloads/
+
+**2. Instalar o Ollama**
+
+Baixe e instale o Ollama:
+
+https://ollama.com/download/windows
+
+**3. Baixar o modelo**
+
+No terminal, execute:
+
+```powershell
+ollama pull llama3.2:3b
+```
+
+**4. Baixar o projeto**
+
+Clone o repositório:
+
+```powershell
+git clone https://github.com/Roushinooll/PCDoctorAI.git
+```
+
+Ou baixe o código-fonte pelo botão **Code > Download ZIP** no GitHub.
+
+**5. Criar um ambiente virtual**
+
+Abra o terminal na pasta do projeto e execute:
+
+```powershell
+python -m venv .venv
+```
+
+**6. Instalar as bibliotecas**
+
+Execute:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+**7. Iniciar o programa**
+
+Com o Ollama em funcionamento, execute:
+
+```powershell
+.\.venv\Scripts\python.exe interface_pcdoctor.py
+```
+
+A interface gráfica do PC Doctor AI será aberta.
+
+## 6. Como utilizar
+
+Após abrir o PC Doctor AI, o usuário encontrará uma interface com informações sobre o desempenho do computador e três botões principais.
+
+### Verificar computador
+
+Coleta informações atualizadas sobre o processador, memória RAM e armazenamento, além de salvar uma nova medição no histórico.
+
+### Gerar diagnóstico
+
+Analisa as informações coletadas e verifica se algum indicador ultrapassou os limites definidos.
+
+Quando não existem alertas, o programa apresenta uma explicação baseada nas regras desenvolvidas em Python.
+
+Quando existem alertas, o sistema utiliza o modelo Llama 3.2 3B para auxiliar na explicação da situação em linguagem simples.
+
+### Ver histórico
+
+Permite visualizar as cinco últimas medições armazenadas no banco de dados.
+
+## 7. Armazenamento das informações
+
+O PC Doctor AI utiliza SQLite para armazenar as medições realizadas.
+
+Durante o desenvolvimento pelo Python, os dados ficam no arquivo:
+
+`data/pcdoctor.db`
+
+Na versão executável, o banco de dados é armazenado na pasta de dados locais do usuário no Windows, dentro do diretório do PC Doctor AI.
+
+O histórico é mantido localmente e não exige uma conta online.
+
+O arquivo do banco de dados não está incluído no repositório, pois cada instalação cria seu próprio histórico.
+
+## 8. Requisitos do sistema
+
+O programa foi desenvolvido para computadores com Windows.
+
+**Computador utilizado no desenvolvimento e nos testes:**
+
+- Sistema operacional Windows 11.
+- Processador AMD Ryzen 5 4600G.
+- Execução local do modelo Llama 3.2 3B.
+- Sem necessidade de placa de vídeo dedicada no ambiente testado.
+
+O funcionamento em computadores com outras configurações dependerá dos recursos disponíveis, principalmente da memória RAM e do processador.
+
+O modelo precisa ser baixado com conexão à internet na primeira instalação. Depois disso, os diagnósticos locais podem funcionar sem internet, desde que o Ollama e o modelo estejam disponíveis.
+
+## 9. Testes e resultados
+
+Durante o desenvolvimento, foram realizados testes de monitoramento, armazenamento de histórico, geração de diagnósticos e funcionamento da inteligência artificial local.
+
+Os testes também incluíram a execução do aplicativo pelo arquivo `.exe`, sem necessidade de abrir o código pelo VS Code.
+
+### Consumo do aplicativo
+
+Em uma observação realizada após aproximadamente 30 segundos de funcionamento, o executável apresentou:
+
+- CPU: 3,2%.
+- Memória RAM: 37,1 MB.
+
+Esses valores representam uma observação específica no computador utilizado, não o consumo máximo do aplicativo.
+
+### Consumo da inteligência artificial
+
+Em um teste separado, o processo `llama-server`, responsável pela execução do modelo Llama 3.2 3B, utilizou aproximadamente 2.447 MB de memória RAM.
+
+Esse valor também representa uma medição pontual.
+
+### Tempo de resposta
+
+Foram realizados testes com alertas simulados de utilização elevada da memória RAM.
+
+Em uma das execuções, a inteligência artificial apresentou uma resposta em aproximadamente 10,10 segundos.
+
+### Funcionamento sem internet
+
+O Ollama foi testado com o computador desconectado da internet e conseguiu gerar explicações utilizando o modelo instalado localmente.
+
+Esses resultados demonstram o funcionamento do projeto no ambiente utilizado nos testes.
+
+## 10. Limitações
+
+O PC Doctor AI é um projeto de caráter técnico e educacional.
+
+Seus diagnósticos são baseados em indicadores de desempenho e não garantem a identificação de todos os possíveis problemas do computador.
+
+O modelo de inteligência artificial também pode produzir explicações imprecisas. Por isso, o programa utiliza regras desenvolvidas em Python para identificar inicialmente situações que merecem atenção.
+
+O aplicativo:
+
+- Não realiza reparos automáticos.
+- Não altera configurações do Windows.
+- Não funciona como antivírus.
+- Não substitui a avaliação de um profissional especializado.
+- Não garante funcionamento idêntico em computadores com configurações diferentes.
+
+A versão executável foi testada no computador de desenvolvimento. Os diagnósticos com IA para situações de alerta foram testados com dados simulados pelo Python.
+
+## 11. Desenvolvimento e responsabilidades
+
+O PC Doctor AI é um projeto desenvolvido no contexto das atividades de estágio do curso Técnico em Informática Integrado ao Ensino Médio do IFMS.
+
+O trabalho envolve diferentes atividades de programação, monitoramento computacional, integração de inteligência artificial, testes, documentação e distribuição.
+
+**Daniel Muniz da Silva**
+
+Responsável pelo desenvolvimento principal da aplicação, incluindo a implementação do monitoramento, integração da inteligência artificial, banco de dados, interface gráfica, empacotamento e documentação técnica.
+
+**Victor Augusto Rocha Lino**
+
+Responsável pela frente de testes complementares em Python, incluindo validação das regras de diagnóstico, testes de coleta de dados com psutil, verificação do SQLite, comunicação com o Ollama e análise do histórico. Essas contribuições devem ser registradas conforme forem realizadas.
+
+O projeto também possui um artigo técnico que apresenta sua finalidade, as ferramentas utilizadas, os procedimentos de instalação, os testes e suas limitações.
+
+## 12. Integrantes
+
+**Daniel Muniz da Silva**  
+**Victor Augusto Rocha Lino**
+
+Estudantes do curso Técnico em Informática Integrado ao Ensino Médio do Instituto Federal de Mato Grosso do Sul (IFMS).
+
+Projeto desenvolvido no contexto do **INOVIA**, iniciativa voltada ao estudo e à aplicação prática da inteligência artificial.
