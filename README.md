@@ -5,7 +5,7 @@
 
 **Integrantes:**
 - Daniel Muniz da Silva
-- Victor Augusto Rocha Lino
+- Victor Augusto Lino Rocha 
 
 **Instituição:** Instituto Federal de Mato Grosso do Sul (IFMS)  
 **Curso:** Técnico em Informática Integrado ao Ensino Médio  
@@ -306,7 +306,7 @@ O projeto também possui um artigo técnico que apresenta sua finalidade, as fer
 ## 12. Integrantes
 
 **Daniel Muniz da Silva**  
-**Victor Augusto Rocha Lino**
+**Victor Augusto Lino Rocha **
 
 Estudantes do curso Técnico em Informática Integrado ao Ensino Médio do Instituto Federal de Mato Grosso do Sul (IFMS).
 
